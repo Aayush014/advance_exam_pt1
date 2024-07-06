@@ -10,7 +10,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+
       body: Consumer<HomeProvider>(
         builder: (context, provider, child) {
           if (provider.isLoading) {
@@ -20,6 +20,7 @@ class HomeScreen extends StatelessWidget {
           } else {
             return Column(
               children: [
+                SizedBox(height: 50,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -32,7 +33,10 @@ class HomeScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    CircleAvatar()
+                    Padding(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: CircleAvatar(),
+                    )
                   ],
                 ),
                 SizedBox(
@@ -85,10 +89,13 @@ class HomeScreen extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return CupertinoButton(
                         padding: EdgeInsets.zero,
-                        onPressed: () =>
-                            Navigator.of(context).push(CupertinoPageRoute(
+                        onPressed: () {
+                          Navigator.of(context).push(CupertinoPageRoute(
                           builder: (context) => DetailsScreen(),
-                        )),
+
+                        ));
+                          currentIndex = index;
+                        },
                         child: DefaultTextStyle(
                           style: TextStyle(color: Colors.black),
                           child: Padding(
